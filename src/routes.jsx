@@ -1,9 +1,10 @@
 import App from "./App";
-import Home from "./Home";
 import Register from "./Register";
 import Login from "./Login";
 import Dashboard from "./Dashboard";
 import ErrorPage from "./ErrorPage";
+
+import { HomePage, Blog } from "./pages";
 
 // create the configuration for the router
 const routes = [
@@ -14,19 +15,19 @@ const routes = [
     errorElement: <ErrorPage />,
     children: [
       // renders when there are no children
-      { index: true, element: <Home /> },
+      { index: true, element: <HomePage /> },
       {
-        path: "/register",
-        element: <Register />,
+        path: "/blog",
+        element: <Blog />,
       },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/dashboard",
-        element: <Dashboard />,
-      },
+      // {
+      //   path: "/login",
+      //   element: <Login />,
+      // },
+      // {
+      //   path: "/dashboard",
+      //   element: <Dashboard />,
+      // },
       // {
       //   path: "/profile/:profileId",
       //   element: <Profile />,

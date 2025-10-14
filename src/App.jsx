@@ -1,57 +1,47 @@
-import "./App.css";
+import NavBar from "./components/layout/NavBar";
+import Footer from "./components/layout/Footer";
 
-import PropTypes from "prop-types";
+import { useLocation } from "react-router-dom";
 
-import { Outlet, Link } from "react-router-dom";
+import { Box, CssBaseline } from "@mui/material";
 
-import ScrollToTop from "./scrollToTop";
+import { NAVBAR_HEIGHT_XS, NAVBAR_HEIGHT_MD } from "./constants/siteConstants";
+
+import { Outlet } from "react-router-dom";
+import ScrollToTop from "./components/primitives/ScrollToTop";
+
+/**
+ * Parent component containing structure common to the whole website.
+ * Intentionally kept to a minimum, so that major sections of website
+ * can have tailored styling.
+ */
 
 function App() {
+  const location = useLocation();
+
   return (
     <>
-      <ScrollToTop />
-      <TitleBar />
-      <NavBar />
-      <Sidebar />
-      <main>
-        <h2>Main Content</h2>
+      <CssBaseline />
+      <ScrollToTop /> {/* Ensures page scrolls to the top on route change */}
+      {/* Container with Navbar and Outlet taking full height, and footer additional */}
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          minHeight: `calc(100vh - ${NAVBAR_HEIGHT_MD})`, // ensures full screen coverage at least
+          marginTop: { xs: NAVBAR_HEIGHT_XS, md: NAVBAR_HEIGHT_MD },
+        }}
+      >
+        <NavBar />
         <Outlet />
-      </main>
-      <Footer />
+
+        {/* the homepage uses a special layout, and applies the footer locally. */}
+        {/* maybe remove this, not sure yet */}
+        {/* {location.pathname !== "/" && <Footer />} */}
+        <Footer />
+      </Box>
     </>
   );
 }
-
-const TitleBar = () => {
-  return (
-    <header>
-      <h1>Title Bar</h1>
-      <hr />
-    </header>
-  );
-};
-
-const NavBar = () => {
-  return (
-    <nav>
-      <h2>Nav Bar</h2>
-      <Link to="/">Return to home</Link>
-      <hr />
-    </nav>
-  );
-};
-
-const Sidebar = () => {
-  <aside>{/* Empty currently */}</aside>;
-};
-
-const Footer = () => {
-  return (
-    <footer>
-      <hr />
-      <h2>Footer</h2>
-    </footer>
-  );
-};
 
 export default App;
