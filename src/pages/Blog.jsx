@@ -16,6 +16,11 @@ import {
   Section1_ServerCreation,
   Section2_FirstLoginHarden,
   Section3_InstallDocker,
+  Section4_FileStructure,
+  Section5_FileAccessPriviliges,
+  Section6_DomainRegistration,
+  Section7_CaddySetup,
+  Section8_YAMLAndCompose,
 } from "./blogSections";
 
 const sections = [
@@ -33,6 +38,31 @@ const sections = [
     id: "stage-a3",
     title: "Stage A3 - Install Docker",
     content: <Section3_InstallDocker />,
+  },
+  {
+    id: "stage-a4",
+    title: "Stage A4 - File Structure",
+    content: <Section4_FileStructure />,
+  },
+  {
+    id: "stage-a5",
+    title: "Stage A5 - File Access Privileges",
+    content: <Section5_FileAccessPriviliges />,
+  },
+  {
+    id: "stage-a6",
+    title: "Stage A6 - Domain Registration",
+    content: <Section6_DomainRegistration />,
+  },
+  {
+    id: "stage-a7",
+    title: "Stage A7 - Caddy Setup",
+    content: <Section7_CaddySetup />,
+  },
+  {
+    id: "stage-a8",
+    title: "Stage A8 - YAML and Compose Intro",
+    content: <Section8_YAMLAndCompose />,
   },
 ];
 
