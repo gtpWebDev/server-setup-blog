@@ -8,3 +8,5 @@ export { default as Section5_FileAccessPriviliges } from "./Section5_FileAccessP
 export { default as Section6_DomainRegistration } from "./Section6_DomainRegistration";
 export { default as Section7_CaddySetup } from "./Section7_CaddySetup";
 export { default as Section8_YAMLAndCompose } from "./Section8_YAMLAndCompose";
+export { default as Section9_Tailscale } from "./Section9_Tailscale";
+export { default as Section10_Ports } from "./Section10_Ports";

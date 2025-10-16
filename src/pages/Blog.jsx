@@ -21,6 +21,8 @@ import {
   Section6_DomainRegistration,
   Section7_CaddySetup,
   Section8_YAMLAndCompose,
+  Section9_Tailscale,
+  Section10_Ports,
 } from "./blogSections";
 
 const sections = [
@@ -63,6 +65,16 @@ const sections = [
     id: "stage-a8",
     title: "Stage A8 - YAML and Compose Intro",
     content: <Section8_YAMLAndCompose />,
+  },
+  {
+    id: "stage-a9",
+    title: "Stage A9 - Tailscale",
+    content: <Section9_Tailscale />,
+  },
+  {
+    id: "stage-a10",
+    title: "Stage A10 - Ports Reference",
+    content: <Section10_Ports />,
   },
 ];
 

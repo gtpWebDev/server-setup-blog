@@ -80,9 +80,9 @@ const Section7_CaddySetup = () => {
         A7 — Caddy Reverse Proxy & Automatic HTTPS
       </Typography>
       <Typography variant="body1" sx={{ fontWeight: 700, mb: 1, color: "red" }}>
-        Note: this section involves some things that will be explained in
-        Section A8 - recommended to just follow the instructions then understand
-        later.
+        Note: this section involves content on yaml in particular that will be
+        explained in Section A8 - recommended to just follow the instructions
+        then understand later.
       </Typography>
       <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
         Bring up Caddy as the front door on ports 80/443. It will automatically
