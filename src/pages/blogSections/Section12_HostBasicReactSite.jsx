@@ -117,10 +117,11 @@ chown glen:glen /srv/apps/base-site/caddy/Caddyfile
 
 Now edit the Caddyfile file, careful not to sudo as it's glen access:
 
-:8080
-root * /usr/share/caddy
-try_files {path} /index.html
-file_server
+:8080 {
+  root * /usr/share/caddy
+  try_files {path} /index.html
+  file_server
+}
 
 # Note: in the next stage the docker-compose file will mount this at /etc/caddy/Caddyfile within the app.`}
         expect={`The file /srv/apps/base-site/caddy/Caddyfile exists. When everything is setup, the container will listen on :8080 and serve the SPA with proper routing.`}
