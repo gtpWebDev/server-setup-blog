@@ -240,15 +240,22 @@ SSH_DEST         = /srv/apps/base-site/frontend/dist  # target dir on server
         title="Add GitHub Actions workflow"
         what="Build the React app on push to main and rsync the dist/ folder to the server."
         why="Zero-click deploys: push → build → deploy."
-        cmd={`# In your repo, create: .github/workflows/deploy.yml
-name: Build & Deploy Docs
+        cmd={`# Note, the build.yml file can just as easily be created locally in the repo through Visual Studio Code, by creating build.yml in the .github/workflows directory.
+
+# Alternatively, use the Actions menu in the repo on github.
+create: .github/workflows/build.yml
+
+name: Build & Deploy base-site
+
 on:
   push:
     branches: [ "main" ]
+  workflow_dispatch: {}
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -258,8 +265,9 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
+          cache-dependency-path: package-lock.json
 
-      - name: Install & Build
+      - name: Install & Build (root)
         run: |
           npm ci
           npm run build
@@ -270,19 +278,29 @@ jobs:
           SSH_HOST: \${{ secrets.SSH_HOST }}
         run: |
           install -m 700 -d ~/.ssh
-          echo "\$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          # recommended: pin server host key (replace with your server's):
-          # ssh-keyscan -H "\$SSH_HOST" >> ~/.ssh/known_hosts
-          printf "Host *\\n\\tStrictHostKeyChecking no\\n" > ~/.ssh/config
+          # Optional: pin your server host key and drop StrictHostKeyChecking no
+          # ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts
+          printf "Host *\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
 
-      - name: Deploy dist/ to server
+      - name: Ensure target directory exists on server
+        env:
+          SSH_HOST: \${{ secrets.SSH_HOST }}
+          SSH_USER: \${{ secrets.SSH_USER }}
+          SSH_DEST: \${{ secrets.SSH_DEST }}   # e.g. /srv/apps/base-site/frontend/dist
+        run: |
+          ssh -i ~/.ssh/id_ed25519 "$SSH_USER@$SSH_HOST" "mkdir -p \"$SSH_DEST\""
+
+      - name: Deploy frontend build
         env:
           SSH_HOST: \${{ secrets.SSH_HOST }}
           SSH_USER: \${{ secrets.SSH_USER }}
           SSH_DEST: \${{ secrets.SSH_DEST }}
         run: |
-          rsync -avz --delete -e "ssh -i ~/.ssh/id_ed25519" dist/ "\$SSH_USER@\$SSH_HOST:\$SSH_DEST/"`}
+          rsync -avz --delete -e "ssh -i ~/.ssh/id_ed25519" \
+            dist/ "$SSH_USER@$SSH_HOST:$SSH_DEST/"
+`}
         expect={`A successful workflow run shows 'Install & Build' and 'Deploy' steps green. Files appear on the server.`}
         glenAdd={`If your build outputs to 'build/' instead of 'dist/', change the rsync source path accordingly.`}
       />
