@@ -21,7 +21,6 @@ jobs:
           cache-dependency-path: package-lock.json
 
       - name: Install & Build (root)
-        working-directory: frontend
         run: |
           npm ci
           npm run build
@@ -53,4 +52,4 @@ jobs:
           SSH_DEST: ${{ secrets.SSH_DEST }}
         run: |
           rsync -avz --delete -e "ssh -i ~/.ssh/id_ed25519" \
-            frontend/dist/ "$SSH_USER@$SSH_HOST:$SSH_DEST/"
+            dist/ "$SSH_USER@$SSH_HOST:$SSH_DEST/"
