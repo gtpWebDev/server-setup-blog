@@ -227,7 +227,7 @@ In GitHub → Repo → Settings → Secrets and variables → Actions → New re
 SSH_PRIVATE_KEY  = (contents of github-deploy including ---START--- etc.)
 
 While you're there, also add in:
-SSH_HOST         = server-apps.<insert Tailnet DNS name from Tailscale>.ts.net   # or your public DNS/IP
+SSH_HOST         = xx.xx.xxx.xxx   # github doesn't have access to my Tailnet DNS, so just use my Hetzner server IP.
 SSH_USER         = glen
 SSH_DEST         = /srv/apps/base-site/frontend/dist  # target dir on server
 `}
