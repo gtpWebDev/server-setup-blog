@@ -244,7 +244,9 @@ find /srv/logs -type f -exec chmod 640 {} \\;`}
         what="Quick commands to diagnose permission issues."
         why="Saves time when a container says 'Permission denied'."
         cmd={`# 1) Who owns it? What are the perms?
-ls -l /path && namei -l /path             # walk each dir with perms
+ls -l /path     # list permissions for files in the directory
+ls -ld /path    # list permissions for the directory
+
 
 # 2) What user does the container run as?
 docker compose exec <svc> id && whoami

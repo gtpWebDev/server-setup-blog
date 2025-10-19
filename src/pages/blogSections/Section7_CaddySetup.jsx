@@ -223,7 +223,7 @@ docker compose logs -f caddy`}
         title="Quick verification"
         what="Confirm HTTPS works end-to-end."
         why="Ensures Caddy is terminating TLS and serving the right backend."
-        cmd={`# Simplest test - just put the addresses in the brower, or...
+        cmd={`# Simplest test - just put the addresses in the browser, or...
 
 # From your laptop:
 curl -I https://gtpwebdev.xyz

@@ -20,9 +20,12 @@ import {
   Section5_FileAccessPriviliges,
   Section6_DomainRegistration,
   Section7_CaddySetup,
+  Section8_Networks,
   Section8_YAMLAndCompose,
   Section9_Tailscale,
   Section10_Ports,
+  Section11_HostReactSite,
+  Section12_HostBasicReactSite,
 } from "./blogSections";
 
 const sections = [
@@ -62,6 +65,11 @@ const sections = [
     content: <Section7_CaddySetup />,
   },
   {
+    id: "stage-a8a",
+    title: "Stage A8a - Networks",
+    content: <Section8_Networks />,
+  },
+  {
     id: "stage-a8",
     title: "Stage A8 - YAML and Compose Intro",
     content: <Section8_YAMLAndCompose />,
@@ -75,6 +83,16 @@ const sections = [
     id: "stage-a10",
     title: "Stage A10 - Ports Reference",
     content: <Section10_Ports />,
+  },
+  {
+    id: "stage-a11",
+    title: "Stage A11 - Host a React Site",
+    content: <Section11_HostReactSite />,
+  },
+  {
+    id: "stage-a12",
+    title: "Stage A12 - Host a Basic React Site",
+    content: <Section12_HostBasicReactSite />,
   },
 ];
 
