@@ -240,10 +240,7 @@ SSH_DEST         = /srv/apps/base-site/frontend/dist  # target dir on server
         title="Add GitHub Actions workflow"
         what="Build the React app on push to main and rsync the dist/ folder to the server."
         why="Zero-click deploys: push → build → deploy."
-        cmd={`# Note, the build.yml file can just as easily be created locally in the repo through Visual Studio Code, by creating build.yml in the .github/workflows directory.
-
-# Alternatively, use the Actions menu in the repo on github.
-create: .github/workflows/build.yml
+        cmd={`# To avoid any syncing issues, in VSC, create: .github/workflows/build.yml in the root directory:
 
 name: Build & Deploy base-site
 
