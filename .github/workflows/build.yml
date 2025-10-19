@@ -45,7 +45,7 @@ jobs:
         run: |
           ssh -i ~/.ssh/id_ed25519 "$SSH_USER@$SSH_HOST" "mkdir -p \"$SSH_DEST\""
 
-      - name: Deploy frontend build
+      - name: Deploy build
         env:
           SSH_HOST: ${{ secrets.SSH_HOST }}
           SSH_USER: ${{ secrets.SSH_USER }}
