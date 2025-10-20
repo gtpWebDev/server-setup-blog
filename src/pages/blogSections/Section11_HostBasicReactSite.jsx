@@ -73,7 +73,7 @@ const Step = ({ n, title, what, why, cmd, expect, glenAdd = "" }) => (
 
 /* ------------------------- Section 11 main component --------------------- */
 
-const Section12_HostBasicReactSite = () => {
+const Section11_HostBasicReactSite = () => {
   return (
     <Box sx={{ maxWidth: 900, mx: "auto", p: { xs: 2, sm: 3, md: 4 } }}>
       <Typography variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
@@ -108,14 +108,14 @@ mkdir -p /srv/apps/base-site/{frontend/dist,caddy}
         title="Create the app Caddyfile (SPA fallback on :8080)"
         what="Add a Caddy config ion the server that serves the React build and falls back to index.html for client routes."
         why="SPAs need unknown routes to return index.html so the client router can handle them."
-        cmd={`Create the Caddyfile file in /srv/apps/base-site/carry, ensuring the correct access privileges (glen glen):
+        cmd={`Create the Caddyfile file in /srv/apps/base-site/caddy, ensuring the correct access privileges (glen glen):
           
 mkdir -p /srv/apps/base-site/caddy
 touch /srv/apps/base-site/caddy/Caddyfile #note file has no extension
 chmod 644 /srv/apps/base-site/caddy/Caddyfile
 chown glen:glen /srv/apps/base-site/caddy/Caddyfile 
 
-Now edit the Caddyfile file, careful not to sudo as it's glen access:
+Content:
 
 :8080 {
   root * /usr/share/caddy
@@ -318,20 +318,6 @@ https://gtpwebdev.xyz`}
         expect={`Your React docs load over HTTPS. Client routes work (thanks to try_files).`}
       />
 
-      <Step
-        n="9"
-        title="Rollback / quick fixes"
-        what="Revert to a previous version or re-run a deploy."
-        why="Fast recovery when a build breaks."
-        cmd={`# Revert to a previous commit and push:
-git revert <bad-commit-sha>
-git push origin main
-
-# Or re-run the last successful Action from the Actions tab (Re-run job).
-# If deploy path was wrong, fix SSH_DEST secret and re-run.`}
-        expect={`Site returns to a known-good state without SSHing into the server.`}
-      />
-
       <Divider sx={{ my: 2 }} />
 
       <Typography variant="subtitle1" sx={{ fontWeight: 800, mb: 1 }}>
@@ -353,4 +339,4 @@ git push origin main
   );
 };
 
-export default Section12_HostBasicReactSite;
+export default Section11_HostBasicReactSite;

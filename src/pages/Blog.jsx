@@ -24,8 +24,7 @@ import {
   Section8_YAMLAndCompose,
   Section9_Tailscale,
   Section10_Ports,
-  Section11_HostReactSite,
-  Section12_HostBasicReactSite,
+  Section11_HostBasicReactSite,
 } from "./blogSections";
 
 const sections = [
@@ -85,14 +84,9 @@ const sections = [
     content: <Section10_Ports />,
   },
   {
-    id: "stage-a11",
-    title: "Stage A11 - Host a React Site",
-    content: <Section11_HostReactSite />,
-  },
-  {
     id: "stage-a12",
-    title: "Stage A12 - Host a Basic React Site",
-    content: <Section12_HostBasicReactSite />,
+    title: "Stage A11 - Host a Basic React Site",
+    content: <Section11_HostBasicReactSite />,
   },
 ];
 
